@@ -308,7 +308,7 @@ def volatility(x: pd.Series, w: Union[Window, int] = Window(None, 0),
     **Usage**
 
     Calculate rolling annualized realized volatility of a price series over a given window. Annual volatility of 20% is
-    returned as 20.0:
+    returned as 0.20:
 
     :math:`Y_t = \sqrt{\\frac{1}{N-1} \sum_{i=t-w+1}^t (R_t - \overline{R_t})^2} * \sqrt{252} * 100`
 
@@ -341,7 +341,7 @@ def volatility(x: pd.Series, w: Union[Window, int] = Window(None, 0),
     if x.size < 1:
         return x
 
-    return apply_ramp(annualize(std(returns(x, type=returns_type), Window(w.w, 0))).mul(100), w)
+    return apply_ramp(annualize(std(returns(x, type=returns_type), Window(w.w, 0))), w)
 
 
 @plot_function
