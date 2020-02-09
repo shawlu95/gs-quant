@@ -227,7 +227,7 @@ def _get_annualization_factor(x):
     for idx, value in x.iloc[1:].iteritems():
         d = (idx - prev_idx).days
         if d == 0:
-            raise MqValueError('multiple data points on same date')
+            raise MqValueError(f'multiple data points on same date {idx}: {value}')
         distances.append(d)
         prev_idx = idx
 
